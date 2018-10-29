@@ -1,7 +1,11 @@
-export const UAI: string = 'urgent_and_important';
-export const UANI: string = 'urgent_and_not_important';
-export const NUAI: string = 'not_urgent_and_important';
-export const NUANI: string = 'not_urgent_and_not_important';
+// urgent and important
+export const UAI: string = 'UAI';
+// urgent and not important
+export const UANI: string = 'UANI';
+// not urgent and important
+export const NUAI: string = 'NUAI';
+// not urgent and not important
+export const NUANI: string = 'NUANI';
 
 export interface Item {
   id: string;
@@ -9,10 +13,10 @@ export interface Item {
 }
 
 export interface ListState {
-  NUAI: [Item];
-  UAI: [Item];
-  UANI: [Item];
-  NUANI: [Item];
+  NUAI: Item[];
+  UAI: Item[];
+  UANI: Item[];
+  NUANI: Item[];
 }
 
 export default {

@@ -20,7 +20,11 @@ class List extends React.Component<ListComponentProps, {}> {
     return (
       <Droppable droppableId={droppableId}>
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            style={{ border: 'black 1px solid', height: 300, width: '20%' }}
+          >
             {items.map((item, index) => (
               <Draggable key={item.id} draggableId={item.id} index={index}>
                 {(

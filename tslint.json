@@ -9,6 +9,7 @@
   },
   "rules": {
     "object-literal-sort-keys": false, //Disable for typescript
+    "ordered-imports": false,
     "interface-name": [true, "never-prefix"]
   },
   "jsRules": {
