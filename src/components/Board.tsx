@@ -24,10 +24,24 @@ class Board extends React.Component<{}, ListState> {
   public render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
-        <List droppableId={UAI} items={this.state[UAI]} />
-        <List droppableId={UANI} items={this.state[UANI]} />
-        <List droppableId={NUAI} items={this.state[NUAI]} />
-        <List droppableId={NUANI} items={this.state[NUANI]} />
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 350px)',
+            gridTemplateRows: 'repeat(2, 40vh)',
+            gridColumnGap: 20,
+            gridRowGap: 20,
+            height: '100vh',
+            justifyContent: 'center',
+            alignContent: 'center',
+            background: '#F6F7F9'
+          }}
+        >
+          <List droppableId={UAI} items={this.state[UAI]} />
+          <List droppableId={UANI} items={this.state[UANI]} />
+          <List droppableId={NUAI} items={this.state[NUAI]} />
+          <List droppableId={NUANI} items={this.state[NUANI]} />
+        </div>
       </DragDropContext>
     );
   }

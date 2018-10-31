@@ -12,6 +12,7 @@ import { Item } from '../constants';
 interface ListComponentProps {
   droppableId: string;
   items: [Item];
+  title?: string;
 }
 
 const grid: number = 8;
@@ -20,55 +21,63 @@ const getItemStyle = (draggableStyle: any, isDragging: boolean): {} => ({
   userSelect: 'none',
   padding: 2 * grid,
   margin: `0 0 ${grid}px 0`,
-  background: isDragging ? 'lightgreen' : 'grey',
+  borderRadius: 5,
+  background: isDragging ? '#F07883' : '#FFFFFF',
   ...draggableStyle
 });
 
 const getListStyle = (isDraggingOver: boolean): {} => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
-  width: 300,
-  minHeight: 400
+  overflow: 'scroll'
 });
 
 class List extends React.Component<ListComponentProps, {}> {
   public render() {
-    const { droppableId, items } = this.props;
+    const { droppableId, items, title = 'empty list' } = this.props;
     return (
-      <Droppable droppableId={droppableId}>
-        {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
-          <div
-            ref={provided.innerRef}
-            {...provided.droppableProps}
-            style={getListStyle(snapshot.isDraggingOver)}
-          >
-            {items.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
-                {(
-                  providedDraggable: DraggableProvided,
-                  snapshotDraggable: DraggableStateSnapshot
-                ) => (
-                  <div>
-                    <div
-                      ref={providedDraggable.innerRef}
-                      {...providedDraggable.draggableProps}
-                      {...providedDraggable.dragHandleProps}
-                      style={getItemStyle(
-                        providedDraggable.draggableProps.style,
-                        snapshotDraggable.isDragging
-                      )}
-                    >
-                      {item.content}
+      <div
+        style={{
+          padding: grid,
+          width: 300,
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <h3>{title}</h3>
+        <Droppable droppableId={droppableId}>
+          {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {items.map((item, index) => (
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(
+                    providedDraggable: DraggableProvided,
+                    snapshotDraggable: DraggableStateSnapshot
+                  ) => (
+                    <div>
+                      <div
+                        ref={providedDraggable.innerRef}
+                        {...providedDraggable.draggableProps}
+                        {...providedDraggable.dragHandleProps}
+                        style={getItemStyle(
+                          providedDraggable.draggableProps.style,
+                          snapshotDraggable.isDragging
+                        )}
+                      >
+                        {item.content}
+                      </div>
+                      {providedDraggable.placeholder}
                     </div>
-                    {providedDraggable.placeholder}
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </div>
     );
   }
 }
