@@ -8,6 +8,7 @@ import {
   DroppableStateSnapshot
 } from 'react-beautiful-dnd';
 import { Item } from '../constants';
+import ItemBox from './ItemBox';
 
 interface ListComponentProps {
   droppableId: string;
@@ -16,15 +17,6 @@ interface ListComponentProps {
 }
 
 const grid: number = 8;
-
-const getItemStyle = (draggableStyle: any, isDragging: boolean): {} => ({
-  userSelect: 'none',
-  padding: 2 * grid,
-  margin: `0 0 ${grid}px 0`,
-  borderRadius: 5,
-  background: isDragging ? '#F07883' : '#FFFFFF',
-  ...draggableStyle
-});
 
 const getListStyle = (isDraggingOver: boolean): {} => ({
   overflow: 'scroll'
@@ -37,9 +29,10 @@ class List extends React.Component<ListComponentProps, {}> {
       <div
         style={{
           padding: grid,
-          width: 300,
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
         <h3>{title}</h3>
@@ -56,20 +49,11 @@ class List extends React.Component<ListComponentProps, {}> {
                     providedDraggable: DraggableProvided,
                     snapshotDraggable: DraggableStateSnapshot
                   ) => (
-                    <div>
-                      <div
-                        ref={providedDraggable.innerRef}
-                        {...providedDraggable.draggableProps}
-                        {...providedDraggable.dragHandleProps}
-                        style={getItemStyle(
-                          providedDraggable.draggableProps.style,
-                          snapshotDraggable.isDragging
-                        )}
-                      >
-                        {item.content}
-                      </div>
-                      {providedDraggable.placeholder}
-                    </div>
+                    <ItemBox
+                      providedDraggable={providedDraggable}
+                      snapshotDraggable={snapshotDraggable}
+                      item={item}
+                    />
                   )}
                 </Draggable>
               ))}

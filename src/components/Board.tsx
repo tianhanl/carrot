@@ -27,10 +27,10 @@ class Board extends React.Component<{}, ListState> {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 350px)',
+            gridTemplateColumns: 'repeat(2, 300px)',
             gridTemplateRows: 'repeat(2, 40vh)',
-            gridColumnGap: 20,
-            gridRowGap: 20,
+            gridColumnGap: 16,
+            gridRowGap: 16,
             height: '100vh',
             justifyContent: 'center',
             alignContent: 'center',
