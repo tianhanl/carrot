@@ -35,7 +35,8 @@ class ItemBox extends React.Component<ItemBoxComponentProps, {}> {
             snapshotDraggable.isDragging
           )}
         >
-          {item.content}
+          <h4 style={{ margin: 0 }}>{item.content}</h4>
+          <p style={{ margin: '0.2em 0 0 0', fontSize: 16 }}>{item.time}</p>
         </div>
         {providedDraggable.placeholder}
       </div>

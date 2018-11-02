@@ -4,6 +4,8 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { generateItems, move } from '../utils';
 import { ListState, NUAI, NUANI, UAI, UANI } from '../constants';
 
+const listIds = [NUAI, NUANI, UAI, UANI];
+
 class Board extends React.Component<{}, ListState> {
   constructor(props: any) {
     super(props);
@@ -37,10 +39,9 @@ class Board extends React.Component<{}, ListState> {
             background: '#F6F7F9'
           }}
         >
-          <List droppableId={UAI} items={this.state[UAI]} />
-          <List droppableId={UANI} items={this.state[UANI]} />
-          <List droppableId={NUAI} items={this.state[NUAI]} />
-          <List droppableId={NUANI} items={this.state[NUANI]} />
+          {listIds.map(id => (
+            <List key={id} droppableId={id} items={this.state[id]} />
+          ))}
         </div>
       </DragDropContext>
     );

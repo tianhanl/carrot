@@ -1,11 +1,12 @@
 import produce from 'immer';
 import { DraggableLocation } from 'react-beautiful-dnd';
 import { Item, ListState } from '../constants/index';
-
+import * as moment from 'moment';
 export const generateItems = (length: number, offset: number = 0): Item[] => {
   return Array.from({ length }).map((v, i) => ({
     id: `item-${i + offset}`,
-    content: `item ${i + offset}`
+    content: `item ${i + offset}`,
+    time: moment().format('ll')
   }));
 };
 

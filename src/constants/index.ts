@@ -10,6 +10,7 @@ export const NUANI: string = 'NUANI';
 export interface Item {
   id: string;
   content: string;
+  time: string;
 }
 
 export interface ListState {

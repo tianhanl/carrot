@@ -5,6 +5,7 @@
   "dependencies": {
     "@types/react-beautiful-dnd": "^7.1.2",
     "immer": "^1.7.4",
+    "moment": "^2.22.2",
     "react": "^16.6.0",
     "react-beautiful-dnd": "^9.0.2",
     "react-dom": "^16.6.0",
